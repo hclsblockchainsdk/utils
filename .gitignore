@@ -1,0 +1,46 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+*.exe
+*.iml
+
+# Folders
+_obj
+_test
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.test
+*.prof
+
+**/launchConfigurations
+node_modules
+**/.vscode
+**/server/tmp
+**/tmp_*
+**/public/logs/**
+**/server/KeyValStore
+**/server/KeyValStore*
+**/build
+**/server/deploy
+.idea
+.project
+.jshintrc
+.DS_Store
+.sublime-project
+.tern-project
+.settings
+/cc_summaries
+
+npm-debug.log
+
+.metadata
+
+/cli/test/e2e/tmp
+
+**/tmp
+
+**/package-lock.json*

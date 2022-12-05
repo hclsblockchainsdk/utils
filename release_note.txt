@@ -1,0 +1,56 @@
+Release Note
+
+2020-01-23 Bonnie Ishiguro
+- Retrieve channel configuration information from solution's solutions.yaml only, rather than from channel_config field of solution's config.json.  This change requires adding a "create_channel" field under each channel specified in solutions.yaml and allows for removing the "channel_config" field from config.json (which is no longer referenced).
+- Modify chain helper's buildErrorJson function to allow for parsing error messages that do not include a "message: " string.
+
+2020-01-28 Bonnie Ishiguro
+chain_helper.js
+- Allow "instantiate_chaincode", "install_chaincode", and "create_channel" fields in solutions.yaml to be optional.  Rather than throw an error if any one of these is not provided, set a default value of false.
+
+2020-01-29 Bonnie Ishiguro
+user_manager.js
+- Bug fix: Updated reference to channel name
+chain_helper.js
+- Fixed typo: endorsement_policy
+
+2020-11-03 Vladyslav Narmaniia
+- We need to update Fabric CA client's timeout value to 20000 because with multiple
+threads (ie, 20 callers, 20 transactions at the same time), CA either gives Authentication
+error during enroll or the CA just times out.
+user_manager.js
+- Enrollment was taken out because the only reason to enroll is to retrieve user keys that were saved in CA attributes,
+so there is no need to enroll if it's a new user being registered since we are generating the keys within the same function.
+This resolves the CA Authentication error during enroll.
+request_handler.js
+- Delete enrollment parameter
+chain_helper.js
+- Delete enrollment parameter
+
+2020-12-29 Pavel Miroshnichenko
+- Add feature to save and retrieve data from Redis service.
+
+2020-12-29 Alex Casella
+- Added caching of user keys using Redis; fixed bug with adminClient in user_manager.registerUser function
+
+2021-01-04 Alex Casella
+- Added caching of CA enrollment objects using Redis; general clean up
+
+2021-01-05 Pavel Miroshnichenko
+- Add de-identifier utils to interact with De-Identifier service.
+- De-Identify User ID when retrieve login token.
+  User ID is PHI/PII data and cannot be stored in chaincode.
+  So User ID should be de-identified before it stored.
+  And de-identified User ID should be used to get login token except app admin user.
+
+2021-01-12 Semyon Burtovoy
+- Added REDIS_URL environment variable to specify connection options to Redis by URL.
+
+2021-01-21 Vladyslav Narmaniia
+- Move server key and server IV logic to config file.
+
+2021-02-19 Alex Casella
+- Updated license information to Licensed by IBM per request from Rob Myatt
+
+2021-03-19 Andrii Mukha
+- fixed login issue when cached user was able to get access token with incorrect password (whhunsdk-352)
